@@ -10,10 +10,10 @@ import mvc.AppPanel;
 
 import javax.swing.*;
 
-public class SimPanel extends AppPanel {
+public class SimulationPanel extends AppPanel {
     private JButton START, SUSPEND, RESUME, STOP, STATS;
 
-    public SimPanel(AppFactory factory) {
+    public SimulationPanel(AppFactory factory) {
         super(factory);
 
         START = new JButton("Start");
@@ -37,8 +37,8 @@ public class SimPanel extends AppPanel {
     }
 
     public static void main(String[] args) {
-        AppFactory factory = new SimFactory();
-        AppPanel panel = new SimPanel(factory);
+        AppFactory factory = new SimulationFactory();
+        AppPanel panel = new SimulationPanel(factory);
         panel.display();
     }
 }
