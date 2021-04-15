@@ -3,6 +3,7 @@ package simStation;
 /*
  * Mark Masulis - 4/10: Made file
  * Mark Masulis 4/12: Finished implementing class
+ * Koosha Kimelman - 4/15: Changed position to int, and updated move() function
  * */
 
 import java.io.Serializable;
@@ -12,7 +13,7 @@ public abstract class Agent implements Runnable, Serializable{
     private String name;
     private Simulation simulation;
     private AgentState state;
-    private int heading = 0; //angle from 0 to 360
+    private Heading heading = Heading.NORTH;
     private int[] position; // {xpos, ypos}
     private Thread thread;
 
@@ -75,19 +76,45 @@ public abstract class Agent implements Runnable, Serializable{
     public abstract void update();
 
     public void move(int steps){
-        double angleRadians = Math.toRadians((double)(heading % 360));
-        double xdelta = Math.cos(angleRadians);
-        double ydelta = -Math.sin(angleRadians);
 
-        position[0] += xdelta * steps;
-        position[1] += ydelta * steps;
+        switch (heading) {
+            case NORTH:
+                position[1] -= steps;
+                break;
+            case SOUTH:
+                position[1] += steps;
+                break;
+            case WEST:
+                position[0] -= steps;
+                break;
+            case EAST:
+                position[0] += steps;
+                break;
+            default:
+                // Should have no way to get the default case
+        }
 
-        if(position[0] > simulation.getFieldWidth()){
+            // (0, 0) to (fieldWidth - 1, fieldHeight - 1)
+        if (position[0] > simulation.getFieldWidth() - 1) {
+            position[0] -= simulation.getFieldWidth();
+        }
+        else if (position[0] < 0) {
+            position[0] += simulation.getFieldWidth();
+        }
+
+        if (position[1] > simulation.getFieldHeight() - 1) {
+            position[1] -= simulation.getFieldHeight();
+        }
+        else if (position[1] < 0) {
+            position[1] += simulation.getFieldHeight();
+        }
+
+        /*if(position[0] > simulation.getFieldWidth()){
             position[0] -= simulation.getFieldWidth();
         }
         if(position[1] > simulation.getFieldHeight()){
             position[1] -= simulation.getFieldHeight();
-        }
+        }*/
 
         simulation.changed();
     }
