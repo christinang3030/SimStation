@@ -23,7 +23,7 @@ public class SimulationView extends View {
 
         gc.setColor(Color.white);
         for (Agent agent : simulation.getAgents()) {
-            gc.fillOval((int)agent.getX() - RADIUS, (int)agent.getY() - RADIUS, RADIUS * 2, RADIUS * 2);
+            gc.fillOval(agent.getX() - RADIUS, agent.getY() - RADIUS, RADIUS * 2, RADIUS * 2);
         }
 
         gc.setColor(oldColor); // Not sure if this is needed or not
