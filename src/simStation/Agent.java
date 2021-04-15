@@ -13,10 +13,10 @@ public abstract class Agent implements Runnable, Serializable{
     private Simulation simulation;
     private AgentState state;
     private int heading = 0; //angle from 0 to 360
-    private double[] position; // {xpos, ypos}
+    private int[] position; // {xpos, ypos}
     private Thread thread;
 
-    public Agent(String name, Simulation sim, double[] pos){
+    public Agent(String name, Simulation sim, int[] pos){
         this.name = name;
         simulation = sim;
         position = pos; //should be length 2
@@ -104,11 +104,11 @@ public abstract class Agent implements Runnable, Serializable{
 
     }
 
-    public double getX(){
+    public int getX(){
         return position[0];
     }
 
-    public double getY(){
+    public int getY(){
         return position[1];
     }
 
