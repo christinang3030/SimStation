@@ -13,7 +13,7 @@ public abstract class Agent implements Runnable, Serializable{
     private String name;
     private Simulation simulation;
     private AgentState state;
-    private Heading heading = Heading.NORTH;
+    protected Heading heading = Heading.NORTH;
     private int[] position; // {xpos, ypos}
     private Thread thread;
 

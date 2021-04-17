@@ -92,6 +92,11 @@ public class Simulation extends Model{
         return new String[] {};
     }
 
+    public void addAgent(Agent a){
+        agents.add(a);
+        threads.add(new Thread(a));
+    }
+
     public int getFieldWidth(){
         return fieldWidth;
     }
