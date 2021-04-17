@@ -13,9 +13,10 @@ public class Simulation extends Model{
     private int clock = 0;
     private ArrayList<Agent> agents;
     private ArrayList<Thread> threads;
+    private boolean started = false;
 
-    private int fieldWidth;
-    private int fieldHeight;
+    private int fieldWidth = 150;
+    private int fieldHeight = 150;
 
     public Simulation(){
         agents = new ArrayList<Agent>();
@@ -24,9 +25,12 @@ public class Simulation extends Model{
     }
 
     public void start(){
-        populate();
-        for(Thread t: threads){
-            t.start();
+        if(!started) {
+            started = true;
+            populate();
+            for (Thread t : threads) {
+                t.start();
+            }
         }
     }
 
@@ -42,20 +46,14 @@ public class Simulation extends Model{
         }
     }
 
+    //function currently executes without waiting for threads to join. may or may not cause issues.
     public void stop(){
         stopTimer();
         //stop agents
         for(Agent a: agents){
             a.stop();
         }
-        //wait for threads
-        for(Thread t: threads){
-            try {
-                t.join();
-            } catch (InterruptedException ie) {
-                System.err.println(ie.getMessage());
-            }
-        }
+        //started = false;
     }
 
     //returns a random agent within the neighbor radius
