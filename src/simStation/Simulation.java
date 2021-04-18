@@ -86,8 +86,8 @@ public class Simulation extends Model{
     }
 
     public String[] stats(){
-
-        return new String[] {};
+        String[] msg = {"#agents = " + agents.size(), "clock = " + clock};
+        return msg;
     }
 
     public void addAgent(Agent a){
