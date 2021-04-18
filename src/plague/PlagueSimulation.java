@@ -30,7 +30,7 @@ public class PlagueSimulation extends Simulation{
         }
     }
 
-    public String[] stats(){
+    public String[] getStats(){
         int infected = 0;
         //count infected agents
         for(Agent a: getAgents()){
