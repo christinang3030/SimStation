@@ -11,12 +11,12 @@ public class Simulation extends Model{
 
     private Timer timer;
     private int clock = 0;
-    private ArrayList<Agent> agents;
+    protected ArrayList<Agent> agents;
     private ArrayList<Thread> threads;
     private boolean started = false;
 
-    private int fieldWidth = 150;
-    private int fieldHeight = 150;
+    private int fieldWidth = 250;
+    private int fieldHeight = 250;
 
     public Simulation(){
         agents = new ArrayList<Agent>();
@@ -69,7 +69,10 @@ public class Simulation extends Model{
             }
         }
         Random r = new Random();
-        return neighbors.get(r.nextInt(neighbors.size())); //choose a random neighbor
+        if(neighbors.size() > 0)
+            return neighbors.get(r.nextInt(neighbors.size())); //choose a random neighbor
+        else
+            return null;
     }
 
     //creates agents and threads
@@ -85,7 +88,7 @@ public class Simulation extends Model{
         timer.purge();
     }
 
-    public String[] stats(){
+    public String[] getStats(){
         String[] msg = {"#agents = " + agents.size(), "clock = " + clock};
         return msg;
     }

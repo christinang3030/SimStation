@@ -36,7 +36,7 @@ public class SimulationFactory implements AppFactory {
     }
 
     public String about() {
-        return "SimStation version 1.0. Copyright 2021 by Cyberdellic Designs";
+        return getTitle() + " version 1.0. Copyright 2021 by Cyberdellic Designs";
     }
 
 }

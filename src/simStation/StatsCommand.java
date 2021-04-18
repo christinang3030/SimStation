@@ -19,7 +19,7 @@ public class StatsCommand extends Command {
     public void execute() {
         Simulation sim = (Simulation)model;
         // stats
-        String[] stats = sim.stats();
+        String[] stats = sim.getStats();
         Utilities.inform(stats);
     }
 }
