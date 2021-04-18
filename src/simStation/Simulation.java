@@ -5,14 +5,16 @@ package simStation;
 * */
 
 import mvc.*;
+
+import java.io.*;
 import java.util.*;
 
 public class Simulation extends Model{
 
-    private Timer timer;
+    private transient Timer timer;
     protected int clock = 0;
     protected ArrayList<Agent> agents;
-    private ArrayList<Thread> threads;
+    //private ArrayList<Thread> threads;
     private boolean started = false;
 
     private int fieldWidth = 250;
@@ -20,7 +22,7 @@ public class Simulation extends Model{
 
     public Simulation(){
         agents = new ArrayList<Agent>();
-        threads = new ArrayList<Thread>();
+        //threads = new ArrayList<Thread>();
         startTimer();
     }
 
@@ -28,9 +30,13 @@ public class Simulation extends Model{
         if(!started) {
             started = true;
             populate();
-            for (Thread t : threads) {
+            for(Agent a: agents){
+                Thread t = new Thread(a);
                 t.start();
             }
+            /*for (Thread t : threads) {
+                t.start();
+            }*/
         }
     }
 
@@ -96,7 +102,7 @@ public class Simulation extends Model{
 
     public void addAgent(Agent a){
         agents.add(a);
-        threads.add(new Thread(a));
+        //threads.add(new Thread(a));
     }
 
     public int getFieldWidth(){
@@ -109,6 +115,21 @@ public class Simulation extends Model{
 
     public ArrayList<Agent> getAgents(){
         return agents;
+    }
+
+    private void readObject(java.io.ObjectInputStream in)
+            throws IOException, ClassNotFoundException{
+        in.defaultReadObject();
+        initSupport();
+        //restart threads if they are already started
+        if(started) {
+            for (Agent a : agents) {
+                Thread t = new Thread(a);
+                t.start();
+            }
+        }
+        //continue timing
+        startTimer();
     }
 
     private class ClockUpdater extends TimerTask {

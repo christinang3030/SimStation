@@ -12,10 +12,10 @@ import java.math.*;
 public abstract class Agent implements Runnable, Serializable{
     private String name;
     protected Simulation simulation;
-    private AgentState state;
+    private AgentState state = AgentState.READY;
     protected Heading heading = Heading.NORTH;
     private int[] position; // {xpos, ypos}
-    private Thread thread;
+    private transient Thread thread;
 
     public Agent(String name, Simulation sim, int[] pos){
         this.name = name;
@@ -25,7 +25,9 @@ public abstract class Agent implements Runnable, Serializable{
 
     public void run(){
         thread = Thread.currentThread();
-        state = AgentState.RUNNING;
+        if(state == AgentState.READY){
+            state = AgentState.RUNNING;
+        }
         while(state != AgentState.STOPPED){
             update();
             //Thread.yield();

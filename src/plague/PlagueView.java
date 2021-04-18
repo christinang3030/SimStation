@@ -19,6 +19,11 @@ public class PlagueView extends View{
         this.simulation = simulation;
     }
 
+    public void setModel(Model model){
+        super.setModel(model);
+        simulation = (PlagueSimulation)model;
+    }
+
     public void paintComponent(Graphics gc){
         super.paintComponent(gc);
         for (Agent agent : simulation.getAgents()) {
