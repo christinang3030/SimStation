@@ -11,7 +11,7 @@ import java.math.*;
 
 public abstract class Agent implements Runnable, Serializable{
     private String name;
-    private Simulation simulation;
+    protected Simulation simulation;
     private AgentState state;
     protected Heading heading = Heading.NORTH;
     private int[] position; // {xpos, ypos}

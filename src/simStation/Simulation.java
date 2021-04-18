@@ -10,13 +10,13 @@ import java.util.*;
 public class Simulation extends Model{
 
     private Timer timer;
-    private int clock = 0;
-    private ArrayList<Agent> agents;
+    protected int clock = 0;
+    protected ArrayList<Agent> agents;
     private ArrayList<Thread> threads;
     private boolean started = false;
 
-    private int fieldWidth = 150;
-    private int fieldHeight = 150;
+    private int fieldWidth = 250;
+    private int fieldHeight = 250;
 
     public Simulation(){
         agents = new ArrayList<Agent>();
@@ -68,8 +68,12 @@ public class Simulation extends Model{
                 }
             }
         }
-        Random r = new Random();
-        return neighbors.get(r.nextInt(neighbors.size())); //choose a random neighbor
+        if(neighbors.isEmpty()){
+            return null;
+        }else {
+            Random r = new Random();
+            return neighbors.get(r.nextInt(neighbors.size())); //choose a random neighbor
+        }
     }
 
     //creates agents and threads
@@ -103,7 +107,7 @@ public class Simulation extends Model{
         return fieldHeight;
     }
 
-    protected ArrayList<Agent> getAgents(){
+    public ArrayList<Agent> getAgents(){
         return agents;
     }
 
