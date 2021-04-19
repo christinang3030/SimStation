@@ -1,6 +1,7 @@
 /*
 Edits:
     Christina Ng    4/7/21: created file
+    Koosha Kimelman 4/18/21: Fixed save() and open()
 */
 
 package mvc;
@@ -89,37 +90,36 @@ public class Utilities {
     // save model
     public static void save(Model model, Boolean saveAs) {
         String fName = model.getFileName();
+        ObjectOutputStream os = null;
         if (fName == null || saveAs) {
             fName = getFileName(fName, false);
             model.setFileName(fName);
         }
         try {
-            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fName));
+            os = new ObjectOutputStream(new FileOutputStream(fName));
             model.setUnsavedChanges(false);
             os.writeObject(model);
             os.close();
         } catch (Exception err) {
             model.setUnsavedChanges(true);
-            Utilities.error(err);
+            if (os != null) Utilities.error(err);
         }
     }
 
     // open model
     public static Model open(Model model) {
         Model newModel = model;
-        if (saveChanges(model) == true) {
+        ObjectInputStream is = null;
+        if (saveChanges(model)) {
             String fName = getFileName(model.getFileName(), true);
             //Model newModel = null;
             try {
-                ObjectInputStream is = new ObjectInputStream(new FileInputStream(fName));
+                is = new ObjectInputStream(new FileInputStream(fName));
                 newModel = (Model)is.readObject();
                 is.close();
             } catch (Exception err) {
-                Utilities.error(err);
+                if (is != null) Utilities.error(err);
             }
-        }
-        else {
-            newModel = model;
         }
         return newModel;
     }
