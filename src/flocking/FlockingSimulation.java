@@ -48,8 +48,9 @@ public class FlockingSimulation extends Simulation {
     }
 
     public String[] getStats() {
+        String[] baseStats = super.getStats();
         int[] speedStats = new int[5];
-        String[] statsMsg = new String[5];
+        String[] statsMsg = new String[5 + baseStats.length];
 
         for(Agent a: agents) {
             Bird bird = (Bird)a;
@@ -58,6 +59,10 @@ public class FlockingSimulation extends Simulation {
 
         for(int i = 0; i < 5; i++) {
             statsMsg[i] = "#birds @ speed " + (i+1) + " = " + speedStats[i];
+        }
+
+        for (int i = 0; i < baseStats.length; i++) {
+            statsMsg[i + 5] = baseStats[i];
         }
 
         return statsMsg;
