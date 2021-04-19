@@ -47,7 +47,8 @@ public class PrisonerDilemmaSimulation extends Simulation {
         String[] baseStats = super.getStats();
         String[] stats = new String[baseStats.length + 4];
         int[] avgFitness = new int[4];
-        String[] strategies = {"Always Cheat", "Always Cooperate", "Randomly Cooperate", "Tit-For-Tat"};
+        String[] strategies = {"Always Cheat", "Always Cooperate", "Randomly Cooperate", "Tit-For-Tat"}; // For the return String
+        String[] colors = {"(red)", "(green)", "(blue)", "(yellow)"}; // For the return String
 
         Prisoner prisoner;
         for (Agent agent : agents) {
@@ -56,7 +57,7 @@ public class PrisonerDilemmaSimulation extends Simulation {
         }
 
         for (int i = 0; i < 4; i++) {
-            stats[i] = "Average fitness for " + strategies[i] + ": " + (avgFitness[i] / 10.0);
+            stats[i] = "Average fitness for " + strategies[i] + " " + colors[i] + ": " + (avgFitness[i] / 10.0);
         }
 
         for (int i = 0; i < baseStats.length; i++) {

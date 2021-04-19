@@ -14,6 +14,10 @@ public class PrisonerDilemmaFactory extends SimulationFactory {
         return new PrisonerDilemmaSimulation();
     }
 
+    public View makeView(Model simulation) {
+        return new PrisonerDilemmaView((PrisonerDilemmaSimulation)simulation);
+    }
+
     public String getTitle() {
         return "Prisoner's Dilemma Tournament";
     }

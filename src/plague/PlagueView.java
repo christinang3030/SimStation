@@ -9,7 +9,7 @@ import simStation.*;
 import java.awt.*;
 import mvc.*;
 
-public class PlagueView extends View{
+public class PlagueView extends SimulationView{
 
     private PlagueSimulation simulation;
     private static final int RADIUS = 2;
@@ -17,6 +17,7 @@ public class PlagueView extends View{
     public PlagueView(PlagueSimulation simulation) {
         super(simulation);
         this.simulation = simulation;
+        drawAgents = false;
     }
 
     public void setModel(Model model){
@@ -26,6 +27,9 @@ public class PlagueView extends View{
 
     public void paintComponent(Graphics gc){
         super.paintComponent(gc);
+
+        Color oldColor = gc.getColor();
+
         for (Agent agent : simulation.getAgents()) {
             if(((PlagueAgent)agent).isInfected()){
                 gc.setColor(Color.RED);
@@ -34,5 +38,7 @@ public class PlagueView extends View{
             }
             gc.fillOval(agent.getX() - RADIUS, agent.getY() - RADIUS, RADIUS * 2, RADIUS * 2);
         }
+
+        gc.setColor(oldColor);
     }
 }
