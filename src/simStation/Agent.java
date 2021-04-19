@@ -29,6 +29,7 @@ public abstract class Agent implements Runnable, Serializable{
             state = AgentState.RUNNING;
         }
         while(state != AgentState.STOPPED){
+            checkSuspended(); // So agents don't update first when loaded up while suspended
             update();
             //Thread.yield();
             try{
@@ -36,7 +37,6 @@ public abstract class Agent implements Runnable, Serializable{
             }catch(InterruptedException ie){
                 System.err.println(ie.getMessage());
             }
-            checkSuspended();
         }
         try {
             thread.join();
