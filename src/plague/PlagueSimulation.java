@@ -31,6 +31,8 @@ public class PlagueSimulation extends Simulation{
     }
 
     public String[] getStats(){
+        String[] baseStats = super.getStats();
+        String[] stats = new String[1 + baseStats.length];
         int infected = 0;
         //count infected agents
         for(Agent a: getAgents()){
@@ -39,7 +41,12 @@ public class PlagueSimulation extends Simulation{
             }
         }
         float percentInfected =  100f * ((float) infected) / ((float)getAgents().size());
-        return new String[]{"#agents = " + getAgents().size(), "clock = " + clock, "%infected = " + percentInfected};
+
+        for (int i = 0; i < baseStats.length; i++) {
+            stats[i] = baseStats[i];
+        }
+        stats[stats.length - 1] = "% infected = " + percentInfected;
+        return stats;
     }
 
     public static void main(String[] args){
