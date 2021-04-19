@@ -36,7 +36,8 @@ public class SimulationFactory implements AppFactory {
     }
 
     public String about() {
-        return getTitle() + " version 1.0. Copyright 2021 by Cyberdellic Designs";
+        return getTitle() + " version 1.0. Copyright 2021 by Cyberdellic Designs" +
+                            "\nDeveloped by: Christina Ng, Mark Masulis, Koosha Kimelman";
     }
 
 }
