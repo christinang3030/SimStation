@@ -33,6 +33,9 @@ class Bird extends Agent {
 class FlockingFactory extends SimulationFactory {
     public Model makeModel() { return new FlockingSimulation(); }
     public String getTitle() { return "Flocking";}
+    public String about(){
+        return "Simulates birds grouping together to form flocks.";
+    }
 }
 
 public class FlockingSimulation extends Simulation {

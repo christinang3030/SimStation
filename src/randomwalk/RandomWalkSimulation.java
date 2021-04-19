@@ -30,6 +30,9 @@ class Drunk extends Agent {
 class RandomWalkFactory extends SimulationFactory {
     public Model makeModel() { return new RandomWalkSimulation(); }
     public String getTitle() { return "Random Walks";}
+    public String about(){
+        return "Simulates people moving at changing directions and speeds.";
+    }
 }
 
 public class RandomWalkSimulation extends Simulation {

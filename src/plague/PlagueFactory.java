@@ -20,4 +20,9 @@ public class PlagueFactory extends SimulationFactory{
     public View makeView(Model simulation){
         return new PlagueView((PlagueSimulation)simulation);
     }
+
+    public String about(){
+        return "Simulates a viral illness spreading between people.";
+    }
+
 }
