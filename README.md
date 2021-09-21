@@ -1,6 +1,7 @@
 # SimStation
 
 SimStation version 1.0. Copyright 2021 by Cyberdellic Designs
+
 Developed by: Christina Ng, Mark Masulis, Koosha Kimelman
 
 SimStation is a framework that follows agent-based architecture for creating simulations, 
