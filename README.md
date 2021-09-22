@@ -4,6 +4,8 @@ SimStation version 1.0. Copyright 2021 by Cyberdellic Designs
 
 Developed by: Christina Ng, Mark Masulis, Koosha Kimelman
 
+ABOUT
+
 SimStation is a framework that follows agent-based architecture for creating simulations, 
 It is built on top of another framework based on model-view-controller architecture.
 
@@ -16,3 +18,8 @@ start, suspend, resume, and stop.
 3. Plague: Simulates a viral illness spreading between people.
 4. Prisoner's Dilemma Tournament: Simulates prisoners playing the prisoner's dilemma with 
       varying strategies.
+
+WHAT WE LEARNED
+
+We learned how to use and customize frameworks, how agents interact within a simulation,
+how to collaborate with team members, and how to use version control and GitHub.
